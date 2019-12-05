@@ -1,4 +1,4 @@
-FROM ruby:2.4.5-alpine3.9
+FROM ruby:2.4.6-alpine3.10
 
 RUN apk add --no-cache --update build-base \
                                 linux-headers \
