@@ -1,0 +1,25 @@
+01:
+aws --region us-east-2 cloudformation create-stack \
+  --stack-name the-fake-project-cluster \
+  --template-body file://./cloudformation/01-cluster-ec2-public-vpc.yml \
+  --capabilities CAPABILITY_IAM \
+  --parameters ParameterKey=EnvironmentName,ParameterValue=the-fake-project \
+               ParameterKey=InstanceType,ParameterValue=t2.small \
+               ParameterKey=DesiredCapacity,ParameterValue=1
+               ParameterKey=MaxSize,ParameterValue=1
+
+02:
+aws --region us-east-2 cloudformation update-stack \
+  --stack-name the-fake-project-alb \
+  --template-body file://./cloudformation/02-alb-external.yml \
+  --parameters ParameterKey=EnvironmentName,ParameterValue=the-fake-project
+
+03:
+aws --region us-east-2 cloudformation create-stack \
+  --stack-name the-fake-project-ec2 \
+  --template-body file://./cloudformation/03-service-ec2-public-lb.yml \
+  --capabilities CAPABILITY_IAM \
+  --parameters ParameterKey=EnvironmentName,ParameterValue=the-fake-project \
+               ParameterKey=ServiceName,ParameterValue=the-fake-project \
+               ParameterKey=ImageUrl,ParameterValue=439494775453.dkr.ecr.us-east-2.amazonaws.com/the-fake-project:74466c2beb154a1638f37c15b5fc181a738c875b \
+               ParameterKey=DesiredCount,ParameterValue=1
