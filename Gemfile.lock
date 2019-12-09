@@ -1052,7 +1052,7 @@ GEM
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     fastimage (2.1.7)
-    ffi (1.9.18)
+    ffi (1.11.3)
     file_validators (2.3.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
@@ -1452,7 +1452,7 @@ DEPENDENCIES
   faker
   faraday_middleware-aws-sigv4
   fast_jsonapi
-  ffi (= 1.9.18)
+  ffi (= 1.11.3)
   file_validators (~> 2.3)
   fog-aws
   foreman
